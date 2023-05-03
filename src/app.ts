@@ -1,21 +1,62 @@
-const { Atem } = require("atem-connection");
-const myAtem = new Atem();
-myAtem.on("info", console.log);
-myAtem.on("error", console.error);
+import * as dotenv from "dotenv";
+dotenv.config();
 
-myAtem.connect("192.168.0.222");
+import path from "path";
+import express, { Express, Request, Response } from "express";
 
-myAtem.on("connected", () => {
-  // myAtem.changeProgramInput(3).then(() => {
-  //   // Fired once the atem has acknowledged the command
-  //   // Note: the state likely hasnt updated yet, but will follow shortly
-  //   console.log("Program input set");
-  // });
-  console.log(myAtem.state);
+import logger from "./utils/logger";
+import pingAirBox from "./utils/ping";
+import { formData, verifyInput } from "./middleware";
+import monitorAirbox from "./utils";
+
+const app: Express = express();
+const PORT = process.env.PORT || 5533;
+const staticPath = path.join(__dirname, "public");
+
+app.use(express.json());
+app.use(express.static(staticPath));
+
+let id: NodeJS.Timer;
+
+app.post(
+  "/api/v1/monitor",
+  verifyInput(formData),
+  (req: Request, res: Response) => {
+    const {
+      atemIp,
+      primaryIp,
+      secondaryIp,
+      primaryInputNumber,
+      secondaryInputNumber,
+    } = req.body;
+    let timerId;
+    clearInterval(timerId);
+    timerId = monitorAirbox({ ...req.body, frequency: 1000 });
+    res.status(200).json({ message: "OK" });
+  }
+);
+
+const start = async () => {
+  try {
+    app.listen(PORT, () => {
+      logger.info(`Server is listening on: 127.0.0.1:${PORT}`);
+    });
+  } catch (error) {
+    if (error instanceof Error) {
+      logger.error(error.message);
+    }
+    logger.error(error);
+    process.exit(1);
+  }
+};
+
+process.on("uncaughtException", () => {
+  logger.error("Uncaught error on NODE");
+  process.exit(1);
+});
+process.on("unhandledRejection", () => {
+  logger.error("Unhandledt rejection on NODE");
+  process.exit(1);
 });
 
-console.log("Starteddddd");
-
-myAtem.on("stateChanged", (state, pathToChange) => {
-  console.log(state); // catch the ATEM state.
-});
+start();
