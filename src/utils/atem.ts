@@ -36,8 +36,8 @@ export const changeAirboxInput = async (
   primaryInputNumber: number,
   secondaryInputNumber: number
 ) => {
-  // const {activeInput} = atem.state
-  const activeInput = 2;
+  // Program input
+  const activeInput = atem.state?.video.mixEffects[0]?.programInput;
 
   if (!isPrimaryBoxAlive && activeInput === primaryInputNumber) {
     const res = await atem

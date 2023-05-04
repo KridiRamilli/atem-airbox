@@ -22,13 +22,6 @@ app.post(
   "/api/v1/monitor",
   verifyInput(formData),
   (req: Request, res: Response) => {
-    const {
-      atemIp,
-      primaryIp,
-      secondaryIp,
-      primaryInputNumber,
-      secondaryInputNumber,
-    } = req.body;
     let timerId;
     clearInterval(timerId);
     timerId = monitorAirbox({ ...req.body, frequency: 1000 });
