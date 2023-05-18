@@ -4,15 +4,97 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
     <title>Atem Airbox</title>
   </head>
   <body>
-    <h1>Welcome</h1>
-    <form action="">
-      <input type="text" name="" id="" />
-      <input type="text" name="" id="" />
-      <input type="text" name="" id="" />
-      <input type="text" name="" id="" />
-    </form>
+    <div class="container">
+      <div class="logo">
+        <img src="images/logo.png" alt="NTV Televizion" />
+      </div>
+      <div class="container_form">
+        <h1>Welcome</h1>
+        <div class="listening">
+          <h2>Listening:</h2>
+          <label class="switch">
+            <input type="checkbox" />
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <form action="">
+          <div class="inputGroup">
+            <div class="active__status">
+              <div class="color green"></div>
+              <div class="color red"></div>
+            </div>
+            <label for="atemIp"> Atem IP</label>
+            <input
+              type="text"
+              name="atemIp"
+              id="atemIp"
+              data-id="atem-ip"
+              placeholder="__.__.__.__"
+            />
+          </div>
+          <div class="inputGroup">
+            <div class="active__status">
+              <div class="color green"></div>
+              <div class="color red"></div>
+            </div>
+            <label for="primaryIp"> Primary AirBox IP </label>
+            <input
+              type="text"
+              name="Airbox Primary"
+              data-id="primary-ip"
+              id="primaryIp"
+              placeholder="__.__.__.__"
+            />
+            <input
+              type="number"
+              name="Aribox Primary Port"
+              data-id="primary-port"
+              min="0"
+              max="5"
+              placeholder="Port Nr..."
+            />
+          </div>
+          <div class="inputGroup">
+            <div class="active__status">
+              <div class="color green"></div>
+              <div class="color red"></div>
+            </div>
+            <label for="secondaryPort"> Secondary AirBox IP</label>
+            <input
+              type="text"
+              name="Airbox Secondary"
+              data-id="secondary-ip"
+              id="secondaryIp"
+              placeholder="__.__.__.__"
+            />
+            <input
+              type="number"
+              name="Aribox Secondary Port"
+              data-id="secondary-port"
+              min="0"
+              max="5"
+              placeholder="Port Nr..."
+            />
+          </div>
+          <input type="button" value="Go" id="submit" class="btn" />
+          <input type="reset" value="Reset" id="reset" class="btn" />
+        </form>
+      </div>
+    </div>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
+    <script src="lib/inputmask.min.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>

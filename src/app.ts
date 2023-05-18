@@ -5,9 +5,8 @@ import path from "path";
 import express, { Express, Request, Response } from "express";
 
 import logger from "./utils/logger";
-import pingAirBox from "./utils/ping";
 import { formData, verifyInput } from "./middleware";
-import monitorAirbox from "./utils";
+import monitorAirbox from "./utils/monitor";
 
 const app: Express = express();
 const PORT = process.env.PORT || 5533;

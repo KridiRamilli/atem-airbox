@@ -1,5 +1,6 @@
 import { ntvAtem, changeAirboxInput } from "./atem";
 import logger from "./logger";
+import sendMail from "./mail";
 import pingAirBox from "./ping";
 
 type InputArgs = {
@@ -23,6 +24,9 @@ const monitorAirbox = (data: InputArgs) => {
       pingFailures++;
       logger.error(pingFailures);
     }
+
+    !isPrimaryBoxAlive &&
+      sendMail(["kridiramilli@gmail.com"], "AirBox1 Failed the transmission");
     changeAirboxInput(
       atemSwitch,
       isPrimaryBoxAlive,

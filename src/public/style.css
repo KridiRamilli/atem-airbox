@@ -1,0 +1,227 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-size: 14px;
+}
+.container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: #eee;
+}
+
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.logo img {
+  width: 150px;
+}
+
+/* Form and Inputs */
+.container_form {
+  display: flex;
+  position: relative;
+  width: 50vw;
+  padding: 100px 10px;
+  flex-direction: column;
+  background: #fff;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.container_form form {
+  padding: 5px;
+  width: 80%;
+}
+
+.container_form .inputGroup {
+  display: flex;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.container_form .inputGroup label {
+  margin-right: 20px;
+  font-size: 1.5rem;
+}
+
+.container_form .inputGroup input {
+  text-align: center;
+  padding: 10px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-width: 0;
+  border-bottom: 1px solid teal;
+  outline: 0;
+}
+.container_form .btn {
+  font-size: 1.2rem;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  background-color: teal;
+  padding: 10px 30px 10px 30px;
+  margin-top: 30px;
+  margin-right: 20px;
+  transition: all 0.4s;
+}
+.container_form .btn#reset {
+  background-color: crimson;
+}
+
+.container_form .btn:hover {
+  cursor: pointer;
+}
+
+.container_form .btn:active {
+  transform: scale(0.8);
+}
+
+/* Active Status */
+
+.active__status {
+  display: flex;
+  width: 80px;
+  /* margin-left: 10px; */
+  /* background-color: black; */
+}
+
+.active__status .color {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  animation: activeStatus 1.5s;
+  animation-iteration-count: infinite;
+}
+.active__status .green {
+  background-color: green;
+  /* display: none; */
+}
+.active__status .red {
+  background-color: red;
+}
+
+.listening {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.listening h2 {
+  margin: 20px;
+}
+
+/* Switch key copied from w3schools */
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: green;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px red;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+@media only screen and (max-width: 1500px) {
+  .container_form {
+    width: 60vw;
+  }
+  html {
+    font-size: 12px;
+  }
+}
+@media only screen and (max-width: 1400px) {
+  .container_form {
+    width: 70vw;
+  }
+  html {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .container_form {
+    width: 95vw;
+  }
+  .container_form form {
+    width: 90%;
+  }
+}
+
+@keyframes activeStatus {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
