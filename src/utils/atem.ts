@@ -1,10 +1,6 @@
+import { sendWsData } from "./websocket";
 import { AtemState, Atem } from "atem-connection";
 import logger from "./logger";
-
-type Inputs = {
-  primary: number;
-  secondary: number;
-};
 
 export const ntvAtem = (atemIp: string) => {
   const myAtem = new Atem();
@@ -20,7 +16,25 @@ export const ntvAtem = (atemIp: string) => {
     //   // Note: the state likely hasnt updated yet, but will follow shortly
     //   console.log("Program input set");
     // });
+    sendWsData({
+      atemSwitch: {
+        isAlive: true,
+        info: {
+          message: "Atem Connected",
+        },
+      },
+    });
     logger.info(myAtem.state);
+  });
+
+  myAtem.on("disconnected", () => {
+    sendWsData({
+      atemSwitch: {
+        isAlive: false,
+        info: { message: "Atem Disconnected" },
+      },
+    });
+    logger.error("Atem Disconnected");
   });
 
   myAtem.on("stateChanged", (state: AtemState, pathToChange: string[]) => {

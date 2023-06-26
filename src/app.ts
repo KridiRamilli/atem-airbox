@@ -3,10 +3,12 @@ dotenv.config();
 
 import path from "path";
 import express, { Express, Request, Response } from "express";
+import { WebSocketServer } from "ws";
 
 import logger from "./utils/logger";
-import { formData, verifyInput } from "./middleware";
 import monitorAirbox from "./utils/monitor";
+import wss from "./utils/websocket";
+import { formData, verifyInput } from "./middleware/formDataValidation";
 
 const app: Express = express();
 const PORT = process.env.PORT || 5533;
@@ -27,6 +29,19 @@ app.post(
     res.status(200).json({ message: "OK" });
   }
 );
+
+app.get("/api/v1/monitor", (req: Request, res: Response) => {
+  wss.clients.forEach((client) => {
+    client.send(
+      JSON.stringify({
+        text: "hi",
+      })
+    );
+  });
+  res.json({
+    data: {},
+  });
+});
 
 const start = async () => {
   try {

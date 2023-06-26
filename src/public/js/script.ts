@@ -6,11 +6,11 @@ window.addEventListener("load", () => {
   });
 });
 
-interface ToastProps {
+type ToastProps = {
   text: string;
   duration?: number;
   isError: boolean;
-}
+};
 
 const infoToast = (args: ToastProps) => {
   const { text, duration = 3000, isError } = args;
@@ -33,13 +33,14 @@ const infoToast = (args: ToastProps) => {
   }).showToast();
 };
 
-infoToast({
-  text: "Une jam success",
-  isError: false,
-});
+// Testing Toast
+// infoToast({
+//   text: "Une jam success",
+//   isError: false,
+// });
 
-infoToast({
-  text: "Une jam error",
-  duration: 6000,
-  isError: true,
-});
+// infoToast({
+//   text: "Une jam error",
+//   duration: 6000,
+//   isError: true,
+// });

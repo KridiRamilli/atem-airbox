@@ -23,6 +23,7 @@
     "ping-monitor": "^0.8.0",
     "toastify-js": "^1.12.0",
     "winston": "^3.8.2",
+    "ws": "^8.13.0",
     "zod": "^3.21.4"
   },
   "devDependencies": {
@@ -31,6 +32,7 @@
     "@types/node": "^18.16.3",
     "@types/nodemailer": "^6.4.7",
     "@types/ping": "^0.4.1",
+    "@types/ws": "^8.5.4",
     "concurrently": "^8.0.1",
     "jest": "^29.5.0",
     "ts-jest": "^29.1.0",
