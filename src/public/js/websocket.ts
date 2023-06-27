@@ -12,14 +12,18 @@ const updateStatus = (data: WsData) => {
   //Do not show red light for active devices
   devices.forEach((device) => {
     const htmlNode = ipNodes[device];
-    let status: string = "green";
+    const redStatusLight = htmlNode?.querySelector(".red") as HTMLElement;
+    const greenStatusLight = htmlNode?.querySelector(".green") as HTMLElement;
+
     if (data[device].isAlive) {
-      status = "red";
+      //Turn off status light based on isAlive
+      redStatusLight.style.display = "none";
+      greenStatusLight.style.display = "block";
+    } else {
+      //Turn off status light based on isAlive
+      redStatusLight.style.display = "block";
+      greenStatusLight.style.display = "none";
     }
-    console.log(htmlNode);
-    const statusLight = htmlNode?.querySelector(`.${status}`) as HTMLElement;
-    //Turn off status light based on isAlive
-    statusLight.style.display = "none";
   });
 };
 
@@ -33,10 +37,9 @@ socket.addEventListener("open", (event) => {
 
 // Listen for messages
 socket.addEventListener("message", (event) => {
-  console.log(event);
-  const { data } = event;
+  let { data } = event;
+  data = JSON.parse(data);
   if (data) {
     updateStatus(data);
   }
-  console.log("Message from server ", event.data);
 });

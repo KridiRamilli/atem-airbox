@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node dist/app.js",
     "build": "tsc",
+    "build:frontend": "npx tsc --p tsconfig-frontend.json",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon dist/app.js\"",
     "test": "jest"
   },

@@ -85,7 +85,7 @@ const monitorAirbox = (data: InputArgs) => {
           info: { message: "Primary AirBox is dead" },
         },
       });
-      if (!isEmailSent) {
+      if (!boxStatusData[1].isEmailSent) {
         sendMail(["kridiramilli@gmail.com"], "AirBox1 Failed the transmission");
         boxStatusData[1].isEmailSent = true;
       }
@@ -100,7 +100,7 @@ const monitorAirbox = (data: InputArgs) => {
           info: { message: "Secondary AirBox is dead" },
         },
       });
-      if (!isEmailSent) {
+      if (!boxStatusData[2].isEmailSent) {
         sendMail(["kridiramilli@gmail.com"], "AirBox1 Failed the transmission");
         boxStatusData[2].isEmailSent = true;
       }
